@@ -25,11 +25,12 @@ var app = new Vue({
     methods: {
 
         async getLessons() {
+            // Using FETCH to send request to backend and retrieve list of lessons
             var res = await fetch(`${this.baseURL}collection/lessons`);
             this.lessons = await res.json();
         },
 
-        async searchLessons() {
+        async searchLessons() { //filter lessons from backend
             var query = `?search=${this.searchTerm}&sort=${this.sortAttribute}&order=${this.sortOrder}`
       
             var res = await fetch(`${this.baseURL}search/collection/lessons/${query}`);
