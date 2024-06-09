@@ -30,19 +30,11 @@ var app = new Vue({
         },
 
         async searchLessons() {
-            var query = {
-                search: this.searchTerm,
-                sort: this.sortAttribute,
-                order: this.sortOrder,
-            };
-
-            var res = await fetch(`${this.baseURL}search/collection/lessons`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(query),
-            });
+            var query = `?search=${this.searchTerm}&sort=${this.sortAttribute}&order=${this.sortOrder}`
+      
+            var res = await fetch(`${this.baseURL}search/collection/lessons/${query}`);
             this.lessons = await res.json();
-        },
+          },
 
         async submitOrder() {
             var order = {
